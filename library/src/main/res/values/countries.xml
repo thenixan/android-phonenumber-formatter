@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <item name="country_ru" type="id"/>
+    <item name="country_kz" type="id"/>
+    <item name="country_gb" type="id"/>
+    <item name="country_us" type="id"/>
+    <item name="country_ua" type="id"/>
+    <item name="country_tj" type="id"/>
+    <item name="country_kg" type="id"/>
+    <item name="country_jp" type="id"/>
+    <item name="country_pa" type="id"/>
+    <item name="country_tr" type="id"/>
+    <item name="country_am" type="id"/>
+    <item name="country_ge" type="id"/>
+    <item name="country_il" type="id"/>
+    <item name="country_lv" type="id"/>
+    <item name="country_lt" type="id"/>
+    <item name="country_md" type="id"/>
+    <item name="country_th" type="id"/>
+    <item name="country_uz" type="id"/>
+    <item name="country_in" type="id"/>
+    <item name="country_by" type="id"/>
+    <item name="country_az" type="id"/>
+    <item name="country_vn" type="id"/>
+    <item name="country_ee" type="id"/>
+    <item name="country_kr" type="id"/>
+
+</resources>

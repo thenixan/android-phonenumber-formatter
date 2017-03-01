@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+<phone-formats>
+    <phone country-code="7" trunk="8" maxlength="7" country="@id/country_ru">
+        <number-formatting>
+            <split letter="-" position="3"/>
+            <split letter="-" position="6"/>
+        </number-formatting>
+        <defcode-formatting>
+            <format length="3" formatting="space">
+                <not-starts-with>7</not-starts-with>
+            </format>
+        </defcode-formatting>
+        <mcc-list>
+            <mcc>250</mcc>
+        </mcc-list>
+    </phone>
+    <phone country-code="7" trunk="8" maxlength="7" country="@id/country_kz">
+        <number-formatting>
+            <split letter=" " position="3"/>
+        </number-formatting>
+        <defcode-formatting>
+            <format length="3" formatting="space">
+                <starts-with>7</starts-with>
+            </format>
+        </defcode-formatting>
+        <mcc-list>
+            <mcc>401</mcc>
+        </mcc-list>
+    </phone>
+    <phone country-code="995" trunk="0" maxlength="6" country="@id/country_ge">
+        <number-formatting>
+            <split letter=" " position="2"/>
+            <split letter=" " position="5"/>
+        </number-formatting>
+        <defcode-formatting>
+            <format length="3" formatting="space">
+                <starts-with>5</starts-with>
+            </format>
+        </defcode-formatting>
+        <mcc-list>
+            <mcc>282</mcc>
+        </mcc-list>
+    </phone>
+    <phone country-code="507" maxlength="7" country="@id/country_pa">
+        <number-formatting>
+            <split letter="-" position="3"/>
+            <split letter="-" position="6"/>
+        </number-formatting>
+        <defcode-formatting>
+            <format length="1" formatting="space"/>
+        </defcode-formatting>
+        <mcc-list>
+            <mcc>714</mcc>
+        </mcc-list>
+    </phone>
+    <phone country-code="44" trunk="0" maxlength="6" country="@id/country_gb">
+        <number-formatting>
+            <split letter=" " position="4"/>
+        </number-formatting>
+        <defcode-formatting>
+            <format length="4" formatting="space"/>
+        </defcode-formatting>
+        <mcc-list>
+            <mcc>234</mcc>
+            <mcc>235</mcc>
+        </mcc-list>
+    </phone>
+    <phone country-code="992" trunk="8" maxlength="7" country="@id/country_tj">
+        <number-formatting>
+            <split letter=" " position="2"/>
+        </number-formatting>
+        <defcode-formatting>
+            <format length="2" formatting="space"/>
+        </defcode-formatting>
+        <mcc-list>
+            <mcc>436</mcc>
+        </mcc-list>
+    </phone>
+    <phone country-code="370" trunk="8" maxlength="5" country="@id/country_lt">
+        <number-formatting>
+            <split letter=" " position="2"/>
+        </number-formatting>
+        <defcode-formatting>
+            <format length="3" formatting="space"/>
+        </defcode-formatting>
+        <mcc-list>
+            <mcc>246</mcc>
+        </mcc-list>
+    </phone>
+    <phone country-code="972" trunk="0" maxlength="7" country="@id/country_il">
+        <number-formatting>
+            <split letter="-" position="3"/>
+        </number-formatting>
+        <defcode-formatting>
+            <format length="2" formatting="dashRight"/>
+        </defcode-formatting>
+        <mcc-list>
+            <mcc>425</mcc>
+        </mcc-list>
+    </phone>
+    <phone country-code="996" trunk="0" maxlength="6" country="@id/country_kg">
+        <number-formatting>
+            <split letter=" " position="2"/>
+            <split letter=" " position="5"/>
+        </number-formatting>
+        <defcode-formatting>
+            <format length="3" formatting="space"/>
+        </defcode-formatting>
+        <mcc-list>
+            <mcc>437</mcc>
+        </mcc-list>
+    </phone>
+    <phone country-code="90" trunk="0" maxlength="7" country="@id/country_tr">
+        <number-formatting>
+            <split letter=" " position="3"/>
+        </number-formatting>
+        <defcode-formatting>
+            <format length="3" formatting="space"/>
+        </defcode-formatting>
+        <mcc-list>
+            <mcc>286</mcc>
+        </mcc-list>
+    </phone>
+    <phone country-code="380" trunk="0" maxlength="7" country="@id/country_ua">
+        <number-formatting>
+            <split letter=" " position="3"/>
+        </number-formatting>
+        <defcode-formatting>
+            <format length="2" formatting="space"/>
+        </defcode-formatting>
+        <mcc-list>
+            <mcc>255</mcc>
+        </mcc-list>
+    </phone>
+    <phone country-code="374" trunk="0" maxlength="6" country="@id/country_am">
+        <number-formatting>
+            <split letter=" " position="3"/>
+        </number-formatting>
+        <defcode-formatting>
+            <format length="2" formatting="space"/>
+        </defcode-formatting>
+        <mcc-list>
+            <mcc>283</mcc>
+        </mcc-list>
+    </phone>
+    <phone country-code="371" maxlength="6" country="@id/country_lv">
+        <number-formatting>
+            <split letter=" " position="3"/>
+        </number-formatting>
+        <defcode-formatting>
+            <format length="2" formatting="space"/>
+        </defcode-formatting>
+        <mcc-list>
+            <mcc>247</mcc>
+        </mcc-list>
+    </phone>
+    <phone country-code="66" trunk="0" maxlength="7" country="@id/country_th">
+        <number-formatting>
+            <split letter=" " position="3"/>
+        </number-formatting>
+        <defcode-formatting>
+            <format length="2" formatting="space"/>
+        </defcode-formatting>
+        <mcc-list>
+            <mcc>520</mcc>
+        </mcc-list>
+    </phone>
+    <phone country-code="373" trunk="0" maxlength="5" country="@id/country_md">
+        <number-formatting>
+            <split letter=" " position="2"/>
+        </number-formatting>
+        <defcode-formatting>
+            <format length="3" formatting="space"/>
+        </defcode-formatting>
+        <mcc-list>
+            <mcc>259</mcc>
+        </mcc-list>
+    </phone>
+    <phone country-code="1" trunk="1" maxlength="7" country="@id/country_us">
+        <number-formatting>
+            <split letter="-" position="3"/>
+        </number-formatting>
+        <defcode-formatting>
+            <format length="3" formatting="dashRight"/>
+        </defcode-formatting>
+        <mcc-list>
+            <mcc>310</mcc>
+            <mcc>311</mcc>
+            <mcc>312</mcc>
+            <mcc>313</mcc>
+            <mcc>314</mcc>
+            <mcc>315</mcc>
+            <mcc>316</mcc>
+        </mcc-list>
+    </phone>
+    <phone country-code="81" trunk="0" maxlength="8" country="@id/country_jp">
+        <number-formatting>
+            <split letter="-" position="4"/>
+        </number-formatting>
+        <defcode-formatting>
+            <format length="2" formatting="dashRight">
+                <starts-with>80</starts-with>
+                <starts-with>90</starts-with>
+            </format>
+            <format length="1" formatting="dashRight"/>
+        </defcode-formatting>
+        <mcc-list>
+            <mcc>411</mcc>
+            <mcc>440</mcc>
+        </mcc-list>
+    </phone>
+    <phone country-code="998" trunk="8" maxlength="7" country="@id/country_uz">
+        <number-formatting>
+            <split letter=" " position="3"/>
+            <split letter=" " position="6"/>
+        </number-formatting>
+        <defcode-formatting>
+            <format length="2" formatting="space"/>
+        </defcode-formatting>
+        <mcc-list>
+            <mcc>434</mcc>
+        </mcc-list>
+    </phone>
+    <phone country-code="91" trunk="0" maxlength="7" country="@id/country_in">
+        <number-formatting>
+            <split letter=" " position="3"/>
+        </number-formatting>
+        <defcode-formatting>
+            <format length="3" formatting="space"/>
+        </defcode-formatting>
+        <mcc-list>
+            <mcc>404</mcc>
+            <mcc>405</mcc>
+            <mcc>406</mcc>
+        </mcc-list>
+    </phone>
+    <phone country-code="375" trunk="8" maxlength="7" country="@id/country_by">
+        <number-formatting>
+            <split letter=" " position="3"/>
+        </number-formatting>
+        <defcode-formatting>
+            <format length="2" formatting="space"/>
+        </defcode-formatting>
+        <mcc-list>
+            <mcc>257</mcc>
+        </mcc-list>
+    </phone>
+    <phone country-code="994" trunk="8" maxlength="7" country="@id/country_az">
+        <number-formatting>
+            <split letter=" " position="3"/>
+            <split letter=" " position="6"/>
+        </number-formatting>
+        <defcode-formatting>
+            <format length="2" formatting="space"/>
+        </defcode-formatting>
+        <mcc-list>
+            <mcc>400</mcc>
+        </mcc-list>
+    </phone>
+    <phone country-code="372" maxlength="4" country="@id/country_ee">
+        <number-formatting/>
+        <defcode-formatting>
+            <format length="4" formatting="space">
+                <starts-with>81</starts-with>
+                <starts-with>82</starts-with>
+                <starts-with>5</starts-with>
+            </format>
+            <format length="3" formatting="space">
+                <starts-with>5</starts-with>
+            </format>
+        </defcode-formatting>
+        <mcc-list>
+            <mcc>248</mcc>
+        </mcc-list>
+    </phone>
+    <phone country-code="82" maxlength="8" country="@id/country_kr">
+        <number-formatting>
+            <split letter=" " position="4"/>
+        </number-formatting>
+        <defcode-formatting>
+            <format length="3" formatting="space">
+                <starts-with>01</starts-with>
+            </format>
+        </defcode-formatting>
+        <mcc-list>
+            <mcc>450</mcc>
+        </mcc-list>
+    </phone>
+    <phone country-code="84" trunk="0" maxlength="7" country="@id/country_vn">
+        <number-formatting>
+            <split letter=" " position="3"/>
+            <split letter=" " position="6"/>
+        </number-formatting>
+        <defcode-formatting>
+            <format length="3" formatting="space">
+                <starts-with>1</starts-with>
+            </format>
+            <format length="2" formatting="space">
+                <starts-with>9</starts-with>
+            </format>
+        </defcode-formatting>
+        <mcc-list>
+            <mcc>452</mcc>
+        </mcc-list>
+    </phone>
+</phone-formats>
