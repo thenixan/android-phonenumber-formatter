@@ -103,7 +103,7 @@ class PhoneUtils private constructor(context: Context) {
     fun isFinal(phoneNumber: String, vararg possibleCountries: Int): Boolean {
         return phoneFormats
                 .filter { possibleCountries.isEmpty() || possibleCountries.contains(it.countryId) }
-                .any { it.validate(phoneNumber) == PhoneFormat.MatchResult.FULL }
+                .any { it.validate(phoneNumber.filter(Char::isDigit)) == PhoneFormat.MatchResult.FULL }
     }
 
     fun getPhoneCountryFormat(phoneNumber: String, vararg possibleCountries: Int): PhoneFormat? {
