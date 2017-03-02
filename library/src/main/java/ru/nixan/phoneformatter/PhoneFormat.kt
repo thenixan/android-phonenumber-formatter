@@ -121,18 +121,20 @@ class PhoneFormat(val mcc: Array<String>, val dividers: Array<Divider>, val defC
     }
 
     fun getCharAt(position: Int, editable: Editable, format: DefcodeFormat?): Char? {
-        return format?.let {
-            val character = editable[position]
-            if (codePrefixStartPosition <= position && position < codePrefixEndPosition) {
-                CODE_PREFIX
-            } else if (countryCodeStartPosition <= position && position < countryCodeEndPosition) {
-                countryCode[position - countryCodeStartPosition]
-            } else if (defCodeStartPosition <= position && position < it.getDefCodeEndPosition(defCodeStartPosition)) {
-                it.getDefCodeCharAt(position - defCodeStartPosition, character)
-            } else if (getPhoneNumberStartPosition(it) <= position && position < getPhoneNumberEndPosition(it)) {
-                getNumberCharAt(position - getPhoneNumberStartPosition(it), character)
-            } else {
-                null
+        val character = editable[position]
+        if (codePrefixStartPosition <= position && position < codePrefixEndPosition) {
+            return CODE_PREFIX
+        } else if (countryCodeStartPosition <= position && position < countryCodeEndPosition) {
+            return countryCode[position - countryCodeStartPosition]
+        } else {
+            return format?.let {
+                if (defCodeStartPosition <= position && position < it.getDefCodeEndPosition(defCodeStartPosition)) {
+                    it.getDefCodeCharAt(position - defCodeStartPosition, character)
+                } else if (getPhoneNumberStartPosition(it) <= position && position < getPhoneNumberEndPosition(it)) {
+                    getNumberCharAt(position - getPhoneNumberStartPosition(it), character)
+                } else {
+                    null
+                }
             }
         }
     }
