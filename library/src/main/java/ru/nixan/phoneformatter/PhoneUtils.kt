@@ -128,26 +128,79 @@ class PhoneUtils private constructor(context: Context) {
     }
 
     @JvmOverloads fun format(input: Editable, vararg possibleCountries: Int): Int? {
-        getPhoneCountryFormat(input.toString().filter(Char::isDigit), *possibleCountries)?.let {
-            it.format(input)
-            return it.countryId
+        if (!input.startsWith("+")) {
+            phoneFormats
+                    .filter { possibleCountries.contains(it.countryId) }
+                    .find {
+                        it.trunk?.let { trunk ->
+                            input.startsWith(trunk)
+                        } ?: false
+                    }?.let { input.replace(0, it.trunk!!.length, it.countryCode) }
         }
-        defaultFormat(input)
-        return null
-    }
 
-    private fun defaultFormat(input: Editable): Editable {
-        var i = 0
-        while (i < input.length) {
-            if (i == 0 && input[i] != PhoneFormat.CODE_PREFIX) {
-                input.replace(0, 0, PhoneFormat.CODE_PREFIX.toString())
-            } else if (i != 0 && !input[i].isDigit()) {
-                input.delete(i, i + 1)
-                i--
+        if (possibleCountries.size == 1) {
+            phoneFormats.first { it.countryId == possibleCountries.first() }.apply {
+                format(input)
+                return countryId
             }
-            i++
         }
-        return input
+
+
+        while (true) {
+            val plainPhone = input.toString().filter(Char::isDigit)
+            if (TextUtils.isEmpty(plainPhone)) {
+                input.clear()
+                return null
+            }
+
+            val possiblePhoneFormats = phoneFormats
+                    .filter { possibleCountries.isEmpty() || possibleCountries.contains(it.countryId) }
+
+            possiblePhoneFormats
+                    .map { it to it.validateCountryCode(plainPhone) }
+                    .sortedBy {
+                        when (it.second) {
+                            PhoneFormat.MatchResult.FULL -> 0
+                            PhoneFormat.MatchResult.LONG -> 1
+                            PhoneFormat.MatchResult.SHORT -> 2
+                            PhoneFormat.MatchResult.NO -> 3
+                        }
+                    }
+                    .firstOrNull()
+                    ?.let { phoneFormat ->
+                        when (phoneFormat.second) {
+                            PhoneFormat.MatchResult.FULL -> {
+                                phoneFormat.first.findBestDefCode(plainPhone)?.let { suitableDefCode ->
+                                    when (suitableDefCode.second) {
+                                        PhoneFormat.MatchResult.FULL -> {
+                                            when (phoneFormat.first.validatePhoneNumber(plainPhone, suitableDefCode.first)) {
+                                                PhoneFormat.MatchResult.FULL -> {
+                                                    phoneFormat.first.format(input)
+                                                    return phoneFormat.first.countryId
+                                                }
+                                                PhoneFormat.MatchResult.SHORT -> {
+                                                    phoneFormat.first.format(input)
+                                                    return phoneFormat.first.countryId
+                                                }
+                                                else -> input.delete(input.length - 1, input.length)
+                                            }
+                                        }
+                                        PhoneFormat.MatchResult.SHORT -> {
+                                            phoneFormat.first.format(input)
+                                            return phoneFormat.first.countryId
+                                        }
+                                        else -> input.delete(input.length - 1, input.length)
+                                    }
+                                } ?: input.delete(input.length - 1, input.length)
+                            }
+                            PhoneFormat.MatchResult.SHORT -> {
+                                phoneFormat.first.format(input)
+                                return phoneFormat.first.countryId
+                            }
+                            else -> input.delete(input.length - 1, input.length)
+                        }
+                    }
+        }
     }
 
     @JvmOverloads fun getCountryCodeByMCC(mcc: String, vararg possibleCountries: Int): String? {

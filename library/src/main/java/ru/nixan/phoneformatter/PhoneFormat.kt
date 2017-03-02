@@ -68,7 +68,7 @@ class PhoneFormat(val mcc: Array<String>, val dividers: Array<Divider>, val defC
         }
     }
 
-    private fun findBestDefCode(phoneNumber: String): Pair<DefcodeFormat, MatchResult>? {
+    fun findBestDefCode(phoneNumber: String): Pair<DefcodeFormat, MatchResult>? {
         defCodeFormatVariants.find { validateDefCode(phoneNumber, it) == MatchResult.FULL }?.let {
             return it to MatchResult.FULL
         }
@@ -77,7 +77,7 @@ class PhoneFormat(val mcc: Array<String>, val dividers: Array<Divider>, val defC
         }
     }
 
-    private fun validateCountryCode(phoneNumber: String): MatchResult {
+    fun validateCountryCode(phoneNumber: String): MatchResult {
         if (phoneNumber.isEmpty()) {
             return MatchResult.NO
         } else if (phoneNumber.length < countryCode.length && phoneNumber.startsWith(countryCode.take(phoneNumber.length))) {
@@ -89,7 +89,7 @@ class PhoneFormat(val mcc: Array<String>, val dividers: Array<Divider>, val defC
         }
     }
 
-    private fun validateDefCode(phoneNumber: String, defCodeFormat: DefcodeFormat): MatchResult {
+    fun validateDefCode(phoneNumber: String, defCodeFormat: DefcodeFormat): MatchResult {
         if (phoneNumber.isEmpty() || phoneNumber.length < countryCode.length) {
             return MatchResult.NO
         } else if (phoneNumber.length >= countryCode.length) {
@@ -108,7 +108,7 @@ class PhoneFormat(val mcc: Array<String>, val dividers: Array<Divider>, val defC
         }
     }
 
-    private fun validatePhoneNumber(phoneNumber: String, defCodeFormat: DefcodeFormat): MatchResult {
+    fun validatePhoneNumber(phoneNumber: String, defCodeFormat: DefcodeFormat): MatchResult {
         if (phoneNumber.isEmpty() || phoneNumber.length < countryCode.length + defCodeFormat.defCodeLength) {
             return MatchResult.NO
         } else if (phoneNumber.length < countryCode.length + defCodeFormat.defCodeLength + numberLength) {
