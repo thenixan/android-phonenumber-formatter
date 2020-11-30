@@ -127,6 +127,50 @@ class PhoneUtils private constructor(context: Context) {
         return null
     }
 
+
+    private fun checkFormatting(
+            phoneFormat: Pair<PhoneFormat, PhoneFormat.MatchResult>,
+            plainPhone: String
+    ): Boolean {
+        return when (phoneFormat.second) {
+            PhoneFormat.MatchResult.FULL -> {
+                phoneFormat.first.findBestDefCode(plainPhone)?.let { suitableDefCode ->
+                    return when (suitableDefCode.second) {
+                        PhoneFormat.MatchResult.FULL -> {
+                            when (phoneFormat.first.validatePhoneNumber(
+                                    plainPhone,
+                                    suitableDefCode.first
+                            )) {
+                                PhoneFormat.MatchResult.FULL,
+                                PhoneFormat.MatchResult.SHORT -> {
+                                    true
+                                }
+                                else -> false
+                            }
+                        }
+                        PhoneFormat.MatchResult.SHORT -> {
+                            true
+                        }
+                        else -> false
+                    }
+                } ?: false
+            }
+            PhoneFormat.MatchResult.SHORT -> {
+                true
+            }
+            else -> false
+        }
+    }
+
+    private fun acceptDigit(input: Editable, phoneFormat: PhoneFormat): Int {
+        phoneFormat.format(input)
+        return phoneFormat.countryId
+    }
+
+    private fun declineDigit(input: Editable) {
+        input.delete(input.length - 1, input.length)
+    }
+
     @JvmOverloads fun format(input: Editable, vararg possibleCountries: Int): Int? {
         if (!input.startsWith("+")) {
             phoneFormats
@@ -166,40 +210,14 @@ class PhoneUtils private constructor(context: Context) {
                             PhoneFormat.MatchResult.NO -> 3
                         }
                     }
-                    .firstOrNull()
+                    .firstOrNull { checkFormatting(it, plainPhone) }
                     ?.let { phoneFormat ->
-                        when (phoneFormat.second) {
-                            PhoneFormat.MatchResult.FULL -> {
-                                phoneFormat.first.findBestDefCode(plainPhone)?.let { suitableDefCode ->
-                                    when (suitableDefCode.second) {
-                                        PhoneFormat.MatchResult.FULL -> {
-                                            when (phoneFormat.first.validatePhoneNumber(plainPhone, suitableDefCode.first)) {
-                                                PhoneFormat.MatchResult.FULL -> {
-                                                    phoneFormat.first.format(input)
-                                                    return phoneFormat.first.countryId
-                                                }
-                                                PhoneFormat.MatchResult.SHORT -> {
-                                                    phoneFormat.first.format(input)
-                                                    return phoneFormat.first.countryId
-                                                }
-                                                else -> input.delete(input.length - 1, input.length)
-                                            }
-                                        }
-                                        PhoneFormat.MatchResult.SHORT -> {
-                                            phoneFormat.first.format(input)
-                                            return phoneFormat.first.countryId
-                                        }
-                                        else -> input.delete(input.length - 1, input.length)
-                                    }
-                                } ?: input.delete(input.length - 1, input.length)
-                            }
-                            PhoneFormat.MatchResult.SHORT -> {
-                                phoneFormat.first.format(input)
-                                return phoneFormat.first.countryId
-                            }
-                            else -> input.delete(input.length - 1, input.length)
+                        if (checkFormatting(phoneFormat, plainPhone)) {
+                            return acceptDigit(input, phoneFormat.first)
+                        } else {
+                            declineDigit(input)
                         }
-                    }
+                    } ?: declineDigit(input)
         }
     }
 
@@ -259,7 +277,7 @@ class PhoneUtils private constructor(context: Context) {
             if (mPhoneUtilsReference == null || mPhoneUtilsReference!!.get() == null) {
                 mPhoneUtilsReference = WeakReference(PhoneUtils(context))
             }
-            return mPhoneUtilsReference!!.get()
+            return mPhoneUtilsReference!!.get()!!
         }
     }
 }
