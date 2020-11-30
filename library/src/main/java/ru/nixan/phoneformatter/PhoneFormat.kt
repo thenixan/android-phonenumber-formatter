@@ -49,6 +49,10 @@ class PhoneFormat(val mcc: Array<String>, val dividers: Array<Divider>, val defC
             }
             i++
         }
+        while (input.endsWith(' ')) {
+            input.delete(input.length-1, input.length)
+        }
+
     }
 
     fun validate(phoneNumber: String): MatchResult {
